@@ -290,16 +290,20 @@
             </radialGradient>
           </defs>
         </svg>
-        <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+        <!-- Reduced vertical padding compensates for the extra button row, so this box matches the others' height -->
+        <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-[6.25rem] lg:text-left">
           <h2 class="text-4xl font-bold tracking-tight text-white">Explore, analyze, plot and contextualize SUS data
           </h2>
           <p class="mt-6 text-lg leading-8 text-gray-400">Allows you to calculate your SUS study scores for your
             multi-variable or single-variable usability studies to get instant insights and plots based on years of
             research on what specific SUS study scores correlate with.</p>
-          <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+          <div class="mx-auto mt-10 grid w-fit grid-cols-[auto_auto] items-center gap-x-6 gap-y-4 lg:mx-0">
             <a href="https://analysis.sus.tools"
-              class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Go
-              to analysis.sus.tools</a>
+              class="col-span-2 rounded-md bg-white px-3.5 py-2.5 text-center text-sm font-semibold text-gray-900 shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Go
+              to analysis.sus.tools (beta version)</a>
+            <a href="https://sus.mixality.de" data-server-warning
+              class="rounded-md bg-white/10 px-3.5 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">sus.mixality.de
+              (server version)</a>
             <a href="https://github.com/jblattgerste/sus-analysis-toolkit"
               class="text-sm font-semibold leading-6 text-white hover:text-blue-600">Check out on GitHub <span
                 aria-hidden="true">→</span></a>
@@ -573,16 +577,20 @@
             class="mt-6 cursor-pointer py-2 text-lg leading-8 text-gray-600 hover:underline outline-none focus:underline">
             How is the uploaded data being used? Is uploaded study data stored?</summary>
           <div class="px-4 pb-4">
-            <p>No data is ever stored on our servers beyond the immediate usage of the toolkit, nor is it used for any
-              purpose other than providing the necessary calculations and plots. More precisely, the components
-              pdf.sus.tools (the questionnaire generator) and statistics.sus.tools are purely client-side, meaning they
-              run entirely in your browser without communicating with any server at all. The analysis.sus.tools (or
-              sus.mixality.de, the hosted instance of the analysis component by the Mixality group at the University of
-              Applied Sciences Emden/Leer) operates on a server where data is briefly uploaded to perform the requested
-              calculations and plots. This data is deleted as soon as the session ends. Notably, if this is still a
-              problem for your specific use case, the analysis component can also be <a
-                href="https://github.com/jblattgerste/sus-analysis-toolkit?tab=readme-ov-file#quickstart---running-the-sus-analysis-toolkit-locally"
-                target="_blank" class="text-blue-600 hover:text-blue-800">run locally on your PC.</a></p>
+            <p>No data is ever stored on our servers. Your study data is only used for the necessary calculations and
+              plots. The components <a href="https://pdf.sus.tools" target="_blank"
+                class="text-blue-600 hover:text-blue-800">pdf.sus.tools</a>
+              (the questionnaire generator), <a href="https://statistics.sus.tools" target="_blank"
+                class="text-blue-600 hover:text-blue-800">statistics.sus.tools</a> and <a
+                href="https://analysis.sus.tools" target="_blank"
+                class="text-blue-600 hover:text-blue-800">analysis.sus.tools</a>
+              (currently in beta) even run entirely in your browser, so your data is never sent to any server. The only
+              exception is <a href="https://sus.mixality.de" data-server-warning
+                class="text-blue-600 hover:text-blue-800">sus.mixality.de</a>, the server version of the analysis
+              component hosted by the Mixality group at the University of Applied Sciences Emden/Leer. Here, data is
+              briefly uploaded to the server to perform the requested calculations and plots, and deleted as soon as the
+              session
+              ends.</p>
           </div>
         </details>
         <details>
@@ -679,6 +687,50 @@
         non-commercial project and provided 'as is', without warranty of any kind, express or implied.</span>
     </div>
   </footer>
+
+  <!-- Warning dialog for the server-based version (sus.mixality.de) -->
+  <dialog id="server-warning"
+    class="w-[calc(100%-2rem)] max-w-md rounded-xl bg-white p-0 shadow-2xl backdrop:bg-gray-900/70">
+    <div class="p-6">
+      <div class="flex items-start gap-4">
+        <svg class="h-7 w-7 flex-none text-amber-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd"
+            d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+            clip-rule="evenodd" />
+        </svg>
+        <div>
+          <h3 class="text-lg font-bold text-gray-900">Server version</h3>
+          <p class="mt-2 text-sm text-gray-800">sus.mixality.de is the server version of the analysis component.
+            <b>Your uploaded study data is briefly sent to its server</b> for the calculations and plots, and deleted
+            as soon as the session ends.
+          </p>
+        </div>
+      </div>
+      <div class="mt-6 flex justify-end gap-3">
+        <button type="button" data-dialog-cancel
+          class="rounded-md px-3.5 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 hover:bg-gray-100">Cancel</button>
+        <a href="https://sus.mixality.de"
+          class="rounded-md bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white hover:bg-blue-800">Continue
+          anyway</a>
+      </div>
+    </div>
+  </dialog>
+  <script>
+    (function () {
+      var dialog = document.getElementById('server-warning');
+      if (!dialog || typeof dialog.showModal !== 'function') return;
+      document.querySelectorAll('[data-server-warning]').forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          dialog.showModal();
+        });
+      });
+      // Close via the cancel button or by clicking the backdrop
+      dialog.addEventListener('click', function (event) {
+        if (event.target === dialog || event.target.hasAttribute('data-dialog-cancel')) dialog.close();
+      });
+    })();
+  </script>
 </body>
 
 </html>
